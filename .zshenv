@@ -1,3 +1,4 @@
+# for rust
 . "$HOME/.cargo/env"
 
 # for homebrew
