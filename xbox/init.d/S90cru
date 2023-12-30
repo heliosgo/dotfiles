@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cru a hosts "* * * * * /opt/etc/init.d/s90hosts"
+cru a freem "0 */4 * * * /jffs/scripts/freem"

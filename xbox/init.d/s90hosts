@@ -1,0 +1,26 @@
+#!/bin/sh
+
+FIND_FILE="/etc/hosts"
+FIND_STR="xboxlive"
+if [ `grep -c "$FIND_STR" $FIND_FILE` -ne '0' ];then
+
+    exit 0
+fi
+
+XBOX_MAC="3C:FA:06:D4:9E:42"
+
+ip6tables -I INPUT -p icmpv6 -m mac --mac-source $XBOX_MAC -j DROP
+ip6tables -I INPUT -p udp -m mac --mac-source $XBOX_MAC --dport 547 -j DROP
+
+cat>>/etc/hosts<<EOF
+192.168.50.1 xvcf1.xboxlive.com
+192.168.50.1 xvcf2.xboxlive.com
+192.168.50.1 assets1.xboxlive.com
+192.168.50.1 assets2.xboxlive.com
+192.168.50.1 d1.xboxlive.com
+192.168.50.1 d2.xboxlive.com
+192.168.50.1 dlassets.xboxlive.com
+192.168.50.1 dlassets2.xboxlive.com
+EOF
+
+killall -SIGHUP dnsmasq

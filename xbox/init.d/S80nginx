@@ -1,0 +1,30 @@
+#!/bin/sh
+
+PATH=/opt/sbin:/opt/bin:/opt/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sb
+
+case $1 in
+        start)
+        PID=`netstat -nlp | grep ':80 ' | awk '{ print $7 }' | awk -F"/" '{ print $1 }'`
+        echo $PID
+        kill -9 $PID
+        nginx && echo 'Nginx started.'
+        ;;
+        stop)
+        nginx -s quit && echo 'Nginx gracefully stopped.'
+        ;;
+        restart)
+        nginx -s stop && nginx && echo 'Nginx restarted.'
+        ;;
+        reload)
+        nginx -s reload && echo 'Nginx configuration reload.'
+        ;;
+        reopen)
+        nginx -s reopen && echo 'Nginx log files reopened.'
+        ;;
+        test)
+        nginx -t
+        ;;
+        *)
+        echo "Usage: $0 {start|stop|restart|reload|reopen|test}"
+        ;;
+esac
