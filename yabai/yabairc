@@ -79,6 +79,8 @@ yabai -m rule --add label="WeChat" app="^WeChat$" manage=off
 yabai -m rule --add label="WeCom" app="^WeCom$" manage=off
 yabai -m rule --add label="Mail" app="^Mail$" manage=off
 yabai -m rule --add label="Telegram" app="^Telegram$" manage=off
+yabai -m rule --add label="Discord" app="^Discord$" manage=off
+yabai -m rule --add label="WhatsApp" app="^WhatsApp$" manage=off
 yabai -m rule --add label="Notion" app="^Notion$" manage=off
 
 # ===== Signals ================================
